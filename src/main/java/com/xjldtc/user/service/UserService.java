@@ -1,8 +1,5 @@
 package com.xjldtc.user.service;
 
-import java.io.IOException;
-import java.util.Properties;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -12,9 +9,11 @@ import org.springframework.stereotype.Service;
 
 import com.xjldtc.base.http.BaseResponseModel;
 import com.xjldtc.base.http.ResponseEnum;
-import com.xjldtc.base.prop.UrlPropertys;
-import com.xjldtc.base.util.PropertiesUtil;
-import com.xjldtc.user.model.po.UserLoginPO;
+import com.xjldtc.user.dao.mapper.UserMapper;
+import com.xjldtc.user.dao.repository.UserRepository;
+import com.xjldtc.user.model.dto.UserLoginDTO;
+import com.xjldtc.user.model.po.UserPO;
+import com.xjldtc.user.model.po.UsertLoginInfoPO;
 
 @Service
 public class UserService {
@@ -22,19 +21,19 @@ public class UserService {
 	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 	
 	@Autowired
-	private UrlPropertys urlPropertys;
+	UserRepository userRepository;
 	
-	public BaseResponseModel userLogin(UserLoginPO userLogin, HttpServletRequest request){
-		StringBuffer usersInfo = new StringBuffer();
-		try {
-			Properties prop = PropertiesUtil.readProp(urlPropertys.getUserUrlPropertys());
-			usersInfo.append(prop.getProperty("user_info"));
-		} catch (IOException e) {
-			e.printStackTrace();
-			return new BaseResponseModel(ResponseEnum.FAIL.code(),ResponseEnum.FAIL.name());
-		}
-		
-		return new BaseResponseModel(ResponseEnum.OK.code(),ResponseEnum.OK.name());
+	@Autowired
+	UserMapper userMapper;
+	
+	public BaseResponseModel userLogin(UserLoginDTO userLogin, HttpServletRequest request){
+		UserPO user = userRepository.findByLogName(userLogin.getLoginName());
+		return new BaseResponseModel(ResponseEnum.OK.code(),ResponseEnum.OK.name(),user);
+	}
+	
+	public BaseResponseModel userLoginInfo(long userId){
+		UsertLoginInfoPO user = userMapper.queryLoginInfoByUserId(userId);
+		return new BaseResponseModel(ResponseEnum.OK.code(),ResponseEnum.OK.name(),user.getId());
 	}
 	
 }
