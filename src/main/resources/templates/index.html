@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>猪头★帝国云</title>
+  <title>（XJLDTC）家庭云服务</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/common/css/base.css"/>
@@ -51,7 +51,7 @@
     <a href="" class="brand-link">
       <img src="/dist/img/pig.png" alt="Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">猪头★帝国</span>
+      <span class="brand-text font-weight-light">家庭云服务</span>
     </a>
     <!-- Sidebar -->
     <div class="sidebar">
@@ -79,7 +79,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="" class="nav-link active">
+                <a href="#" onclick="showBodyInfo()" class="nav-link active">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>synopsis</p>
                 </a>
@@ -134,31 +134,9 @@
 </div>
 <!-- ./wrapper -->
 <script type="text/javascript">
-    var xmlhttp = new XMLHttpRequest();
-    window.onload = function(){
-    	loadBodyInfo();
-    }
-   
-    function createXmlHttp(){
-    	if(window.ActiveXObject){
-    	  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    	} 
-    	else{
-    	  xmlhttp = new XMLHttpRequest();
-    	}
-    }
-    
-    function loadBodyInfo(){
-    	createXmlHttp();
-        xmlhttp.open("GET", "/common/foot_info.html", true);
-        xmlhttp.send();
-        xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {//
-                document.getElementById("foot_info").innerHTML = xmlhttp.responseText;
-            }
-        }
-    }
-    
+	function showBodyInfo(){
+		 $("#body_info").load("/personal_info/personal_index.html");
+	}
     $.widget.bridge('uibutton', $.ui.button)
 </script>
 <script type="text/javascript" src="/common/js/base.js"></script>
