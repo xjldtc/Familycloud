@@ -11,9 +11,9 @@ import com.xjldtc.base.http.BaseResponseModel;
 import com.xjldtc.base.http.ResponseEnum;
 import com.xjldtc.user.dao.mapper.UserMapper;
 import com.xjldtc.user.dao.repository.UserRepository;
-import com.xjldtc.user.model.dto.UserLoginDTO;
-import com.xjldtc.user.model.po.UserPO;
-import com.xjldtc.user.model.po.UsertLoginInfoPO;
+import com.xjldtc.user.entity.dto.UserLoginDTO;
+import com.xjldtc.user.entity.po.UserPO;
+import com.xjldtc.user.entity.po.UsertLoginInfoPO;
 
 @Service
 public class UserService {

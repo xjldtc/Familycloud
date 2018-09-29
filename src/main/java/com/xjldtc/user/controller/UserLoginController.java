@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xjldtc.base.http.BaseResponseModel;
-import com.xjldtc.user.model.dto.UserLoginDTO;
-import com.xjldtc.user.model.po.UserPO;
+import com.xjldtc.user.entity.dto.UserLoginDTO;
+import com.xjldtc.user.entity.po.UserPO;
 import com.xjldtc.user.service.UserService;
 
 @RestController

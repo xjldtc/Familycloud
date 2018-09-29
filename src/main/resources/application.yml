@@ -9,10 +9,14 @@ server:
 # server.address=192.168.16.11
 #配置数据源
 spring:
+  application:
+    name: family-cloud
+  profiles:
+    active: ${mycloud_profile}
   datasource:
-     url: jdbc:mysql://47.97.99.122:3306/familycloud?useSSL=false
-     username: root
-     password: xjldtc408168894
+     url: ${spring_datasource_url}
+     username: ${spring_datasource_username}
+     password: ${spring_datasource_password}
      driver-class-name: com.mysql.jdbc.Driver
   batch:
     job: 
@@ -37,6 +41,5 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   configuration: 
      mapUnderscoreToCamelCase: true
-#url:
-#  menu-url-propertys: E:/mycep/menu_prop.properties
-#  user-url-propertys: E:/mycep/user_prop.properties
+logging:
+  file: E:\log\familycloud-portal.log
